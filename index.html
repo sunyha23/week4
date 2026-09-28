@@ -3,715 +3,436 @@
 <head>
 <meta charset="UTF-8">
 <title>생각의 크기</title>
-
-<!-- 구글 폰트 (인터넷 연결 필요) -->
-<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Nanum+Pen+Script&family=Jua&family=Do+Hyeon&family=East+Sea+Dokdo&family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
-
 <style>
+body{
+	margin:0px;
+	overflow:hidden;
+	background:black;
+	color:white;
+	font-family:Arial,sans-serif;}
 
-    /* 전체 배경과 글꼴 */
-    body {
-        margin: 0px;
-        overflow: hidden; /* 화면 밖으로 나간 부분 때문에 스크롤이 생기지 않게 */
-        background: black;
-        color: white;
-        font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    }
+#placeBackground{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100vw;
+	height:100vh;
+	opacity:0;}
 
-    /* 제목 (왼쪽 위) */
-    #title {
-        position: absolute;
-        top: 32px;
-        left: 40px;
-        font-size: 64px;
-        font-weight: 800;
-        letter-spacing: -2px;
-        margin: 0px; /* h1의 기본 여백 없애기 */
-    }
+#title{
+	position:absolute;
+	top:32px;
+	left:40px;
+	font-size:64px;
+	margin:0px;}
 
-    /* 제목 아래 설명 */
-    #subtitle {
-        position: absolute;
-        top: 118px;
-        left: 40px;
-        margin: 0px;
-        font-size: 15px;
-        color: #d0d0d0;
-    }
+#subtitle{
+	position:absolute;
+	top:118px;
+	left:40px;f
+	ont-size:15px;
+	color:#d0d0d0;}
 
-    /* 왼쪽 아래 안내 문구 */
-    #guide {
-        position: absolute;
-        left: 40px;
-        bottom: 40px;
-        margin: 0px;
-        font-size: 13px;
-        color: #bbbbbb;
-    }
+#headArea{
+	position:relative;
+	width:120vh;
+	height:120vh;
+	margin:-8vh auto 0px auto;}
 
-    /* 작은 소제목 (01, 02 ...) */
-    .label {
-        margin: 26px 0px 8px 0px;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        color: #d6d6d6;
-    }
+#head{position:
+	absolute;top:0px;
+	left:0px;
+	width:100%;
+	height:100%;}
 
-    /* 머리 영역 (화면 가운데, 화면 높이에 맞춰 크기가 바뀜) */
-    /* vh = 화면 높이의 1%.  120vh = 화면 높이의 120% (머리카락 끝부분은 화면 밖으로) */
-    #headArea {
-        position: relative;
-        width: 120vh;
-        height: 120vh;
-        margin: -8vh auto 0px auto; /* 그림 위쪽 빈 공간만큼 올려서 정수리가 화면 위에 오게. 머리카락 아래쪽은 화면 밖으로 */
-    }
+#bubble1{
+	position:absolute;
+	top:12%;
+	left:35%;
+	width:19%;
+	height:19%;
+	background:white;
+	border:3px solid black;
+	border-radius:50%;}
 
-    /* 머리 윤곽 이미지 */
-    #head {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-    }
+#bubble2{
+	position:absolute;
+	top:13%;
+	left:55%;
+	width:14%;
+	height:14%;
+	background:white;
+	border:1px solid #999999;
+	border-radius:50%;}
 
-    /* 생각 도형의 위치와 크기는 % 단위 (머리 영역 크기에 대한 비율) */
-    /* 그래서 화면이 커지면 머리와 생각이 같이 커져요 */
+#bubble3{
+	position:absolute;
+	top:25%;left:63%;
+	width:14%;
+	height:14%;
+	background:white;
+	border:1px solid #999999;
+	border-radius:50%;}
 
-    /* 생각 1 : 큰 원 */
-    #bubble1 {
-        position: absolute;
-        top: 12%;
-        left: 35%;
-        width: 19%;
-        height: 19%;
-        cursor: pointer; /* 마우스를 올리면 손가락 모양 */
-    }
+#bubble4{
+	position:absolute;
+	top:31%;
+	left:77%;
+	width:10.5%;
+	height:16.8%;
+	background:white;
+	border:1px solid #999999;
+	border-radius:50%;}
 
-    /* 생각 2 : 작은 원 */
-    #bubble2 {
-        position: absolute;
-        top: 13%;
-        left: 55%;
-        width: 14%;
-        height: 14%;
-        cursor: pointer; /* 마우스를 올리면 손가락 모양 */
-    }
+#bubble5{
+	position:absolute;
+	top:32%;
+	left:45%;
+	width:18.85%;
+	height:9.43%;
+	background:white;
+	border:1px solid #999999;
+	border-radius:50%;}
 
-    /* 생각 3 : 정원 */
-    #bubble3 {
-        position: absolute;
-        top: 25%;
-        left: 63%;
-        width: 14%;
-        height: 14%;
-        cursor: pointer; /* 마우스를 올리면 손가락 모양 */
-    }
+.word{
+	position:absolute;
+	top:36%;
+	left:10%;
+	right:10%;
+	text-align:center;
+	font-size:1.7vh;
+	color:black;
+	margin:0px;}
 
-    /* 생각 4 : 세로로 긴 타원 */
-    #bubble4 {
-        position: absolute;
-        top: 31%;
-        left: 77%;
-        width: 10.5%;
-        height: 16.8%;
-        cursor: pointer; /* 마우스를 올리면 손가락 모양 */
-    }
+#nameArea{
+	position:absolute;
+	top:150px;
+	left:40px;
+	width:240px;}
 
-    /* 생각 5 : 가로로 긴 타원 */
-    #bubble5 {
-        position: absolute;
-        top: 32%;
-        left: 45%;
-        width: 18.85%;
-        height: 9.43%;
-        cursor: pointer; /* 마우스를 올리면 손가락 모양 */
-    }
+#nameInput{
+	width:220px;
+	height:28px;
+	font-size:16px;}
 
-    /* 원 모양: ring = 선택 표시(테두리) 원, fill = 색 원, 글자는 그 위에 */
-    .ring, .fill {
-        border-radius: 50%;
-    }
+#controls{
+	position:absolute;
+	right:40px;
+	bottom:40px;
+	width:300px;}
 
-    .ring {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
-    }
+.label{
+	margin:20px 0px 8px 0px;
+	font-size:13px;}
 
-    .fill {
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        right: 4px;
-        bottom: 4px;
-        background: white;
-    }
+#thoughtInput{
+	width:290px;
+	height:28px;
+	font-size:16px;}
 
-    /* 도형 안의 글자 */
-    .word {
-        position: absolute;
-        top: 36%;
-        left: 10%;
-        right: 10%; /* 양쪽을 띄워서 긴 글도 원 안에서 줄바꿈 */
-        text-align: center;
-        font-size: 1.7vh;
-        font-weight: 600;
-        color: #111111;
-    }
+#sizeSlider{
+	width:300px;}
 
-    /* 이름 입력 영역 (왼쪽, 제목 아래) */
-    #nameArea {
-        position: absolute;
-        top: 150px;
-        left: 40px;
-        width: 240px;
-    }
+.place{
+	width:70px;
+	height:32px;
+	background:white;
+	opacity:0.6;}
 
-    /* 컨트롤 영역 (오른쪽 아래 구석) */
-    #controls {
-        position: absolute;
-        right: 40px;
-        bottom: 40px;
-        width: 300px;
-    }
+#placeBasic{
+	opacity:1;}
 
-    /* 글자 입력칸: 테두리 없이 밑줄만 */
-    #nameInput, #thoughtInput {
-        width: 100%;
-        height: 34px;
-        font-size: 18px;
-        font-family: inherit;
-        border: none;
-        border-bottom: 2px solid white;
-        background: transparent;
-        color: white;
-        outline: none;
-        box-sizing: border-box; /* 밑줄이 영역 밖으로 삐져나가지 않게 */
-    }
+#resetButton{
+	margin-top:20px;
+	width:300px;
+	height:36px;
+	background:white;}
 
-    /* 크기 슬라이더 */
-    #sizeSlider {
-        width: 100%;
-        accent-color: white;
-    }
-
-    /* 색 고르기: 동그란 버튼 */
-    #colorInput {
-        width: 44px;
-        height: 44px;
-        border: none;
-        border-radius: 50%;
-        background: none;
-        cursor: pointer;
-    }
-
-    /* 리셋 버튼: 흰 바탕에 검은 테두리 알약 모양 */
-    #resetButton {
-        display: block;
-        margin-top: 26px;
-        width: 300px;
-        height: 36px;
-        background: transparent;
-        color: white;
-        border: 2px solid white;
-        border-radius: 18px;
-        font-size: 14px;
-        font-weight: 600;
-        font-family: inherit;
-        cursor: pointer;
-    }
-
-    /* 말투(폰트) 버튼: 버튼 글씨도 그 폰트로 보여줌 */
-    .font {
-        height: 32px;
-        padding: 0px 12px;
-        white-space: nowrap; /* 버튼 글자가 두 줄로 안 나뉘게 */
-        margin-bottom: 4px;
-        background: transparent;
-        color: white;
-        border: 1px solid white;
-        border-radius: 16px;
-        font-size: 15px;
-        cursor: pointer;
-    }
-
-    #fontBasic    { font-family: inherit; font-size: 13px; }
-    #fontGaegu    { font-family: "Gaegu", sans-serif; font-weight: 700; }
-    #fontPen      { font-family: "Nanum Pen Script", sans-serif; font-size: 19px; }
-    #fontJua      { font-family: "Jua", sans-serif; }
-    #fontDohyeon  { font-family: "Do Hyeon", sans-serif; }
-    #fontDokdo    { font-family: "East Sea Dokdo", sans-serif; font-size: 19px; }
-    #fontMyeongjo { font-family: "Nanum Myeongjo", serif; font-weight: 700; font-size: 13px; }
-
-    /* 배경 버튼: 고른 것만 진하게, 나머지는 흐리게(opacity) */
-    .place {
-        width: 70px;
-        height: 32px;
-        background: white;
-        color: #111111;
-        border: none;
-        border-radius: 16px;
-        font-size: 13px;
-        font-weight: 600;
-        font-family: inherit;
-        cursor: pointer;
-        opacity: 0.6;
-    }
-
-    #placeBasic {
-        opacity: 1; /* 처음에는 '기본'이 골라진 상태 */
-    }
-
-    /* 입력칸 안내 글씨(placeholder)도 밝게 */
-    #nameInput::placeholder, #thoughtInput::placeholder {
-        color: #b5b5b5;
-    }
+#guide{
+	position:absolute;
+	left:40px;
+	bottom:40px;
+	font-size:13px;
+	color:#bbbbbb;}
 
 </style>
 </head>
 
 <body>
+<img src="subway.jpg" id="placeBackground">
+<div id="headArea">
+<img src="head_new.png" id="head">
+<div id="bubble1"><p class="word" id="word1">생각 1</p></div>
+<div id="bubble2"><p class="word" id="word2">생각 2</p></div>
+<div id="bubble3"><p class="word" id="word3">생각 3</p></div>
+<div id="bubble4"><p class="word" id="word4">생각 4</p></div>
+<div id="bubble5"><p class="word" id="word5">생각 5</p></div>
+</div>
 
-    <!-- 머리 + 생각 도형 -->
-    <div id="headArea">
+<h1 id="title">(   )의 머릿속</h1>
+<p id="subtitle">지금 내 머릿속을 무엇이, 얼마나 차지하고 있을까</p>
+<div id="nameArea"><p>누구의 머릿속인가요?</p><input type="text" id="nameInput"></div>
 
-        <img id="head" src="head_new.png">
+<p id="guide">생각을 클릭해서 고른 뒤, 오른쪽에서 내용 · 크기 · 색을 바꿔보세요.</p>
+<div id="controls">
 
-        <div id="bubble1"><div class="ring" id="ring1"></div><div class="fill" id="fill1"></div><p class="word" id="word1">생각 1</p></div>
-        <div id="bubble2"><div class="ring" id="ring2"></div><div class="fill" id="fill2"></div><p class="word" id="word2">생각 2</p></div>
-        <div id="bubble3"><div class="ring" id="ring3"></div><div class="fill" id="fill3"></div><p class="word" id="word3">생각 3</p></div>
-        <div id="bubble4"><div class="ring" id="ring4"></div><div class="fill" id="fill4"></div><p class="word" id="word4">생각 4</p></div>
-        <div id="bubble5"><div class="ring" id="ring5"></div><div class="fill" id="fill5"></div><p class="word" id="word5">생각 5</p></div>
+<p class="label">지금 무슨 생각을 하고 있나요?</p>
+<input type="text" id="thoughtInput">
 
-    </div>
+<p class="label">이 생각이 머릿속을 얼마나 차지하고 있나요?</p>
+<input type="range" id="sizeSlider" min="60" max="190" value="190">
 
-    <!-- 제목 (머리 이미지보다 뒤에 써야 이미지 위에 보여요) -->
-    <h1 id="title">(   )의 머릿속</h1>
-    <p id="subtitle">지금 내 머릿속을 무엇이, 얼마나 차지하고 있을까</p>
+<p class="label">이 생각은 어떤 색인가요?</p>
+<input type="color" id="colorInput" value="#ffffff">
 
-    <!-- 이름 입력 영역 (왼쪽) -->
-    <div id="nameArea">
-        <p class="label">01 &nbsp;누구의 머릿속인가요?</p>
-        <input type="text" id="nameInput" placeholder="이름을 적어보세요">
-    </div>
+<p class="label">지금 어디에 있나요?</p>
+<button class="place" id="placeBasic">기본</button>
+<button class="place" id="placeSubway">지하철</button>
+<button class="place" id="placeClass">교실</button>
+<button class="place" id="placeAlley">골목길</button>
+<button id="resetButton">처음으로 되돌리기</button>
+</div>
 
-    <!-- 안내 문구 (왼쪽 아래) -->
-    <p id="guide">생각을 클릭해서 고른 뒤, 오른쪽에서 내용 · 크기 · 색을 바꿔보세요.</p>
-
-    <!-- 컨트롤 영역 -->
-    <div id="controls">
-
-        <p class="label">02 &nbsp;지금 무슨 생각을 하고 있나요?</p>
-        <input type="text" id="thoughtInput" placeholder="생각을 적어보세요">
-
-        <p class="label">03 &nbsp;이 생각이 머릿속을 얼마나 차지하고 있나요?</p>
-        <input type="range" id="sizeSlider" min="60" max="300" value="190">
-
-        <p class="label">04 &nbsp;이 생각은 어떤 색인가요?</p>
-        <input type="color" id="colorInput" value="#ffffff">
-
-        <p class="label">05 &nbsp;이 생각은 어떤 말투인가요?</p>
-        <button class="font" id="fontBasic">기본</button>
-        <button class="font" id="fontGaegu">삐뚤빼뚤</button>
-        <button class="font" id="fontPen">손글씨</button>
-        <button class="font" id="fontJua">동글동글</button>
-        <button class="font" id="fontDohyeon">큰소리</button>
-        <button class="font" id="fontDokdo">휘갈김</button>
-        <button class="font" id="fontMyeongjo">진지함</button>
-
-        <p class="label">06 &nbsp;지금 어디에 있나요?</p>
-        <button class="place" id="placeBasic">기본</button>
-        <button class="place" id="placeSubway">지하철</button>
-        <button class="place" id="placeClass">교실</button>
-        <button class="place" id="placeAlley">골목길</button>
-
-        <!-- 배경 소리 (반복 재생) -->
-        <audio id="placeSound" loop></audio>
-
-        <!-- 처음으로 되돌리기 -->
-        <button id="resetButton">처음으로 되돌리기</button>
-
-    </div>
-
+<audio src="subway.mp3" id="subwaySound" loop></audio>
+<audio src="classroom.mp3" id="classSound" loop></audio>
+<audio src="alley.mp3" id="alleySound" loop></audio>
 
 <script>
-
-    /* 지금 선택된 생각 (처음에는 생각 1) */
-    let selected = "bubble1";
-
-    /* 지금 고른 생각의 글자 (말투를 바꿀 때 사용) */
-    let selectedWord = word1;
-
-    /* 각 생각의 현재 크기와 색을 기억하는 변수 */
-    let size1 = 190;
-    let size2 = 140;
-    let size3 = 140;
-    let size4 = 140;
-    let size5 = 145;
-
-    /* 각 생각이 머리 밖으로 나가지 않는 최대 크기 */
-    let max1 = 199;
-    let max2 = 200;
-    let max3 = 230;
-    let max4 = 178;
-    let max5 = 178;
-
-    let color1 = "#ffffff";
-    let color2 = "#ffffff";
-    let color3 = "#ffffff";
-    let color4 = "#ffffff";
-    let color5 = "#ffffff";
-
-    /* 처음에는 생각 1이 선택된 상태로 표시 */
-    bubble1.style.filter = "brightness(0.7)";
-
-
-    /* 생각 1 선택 */
-    bubble1.onclick = function(){
-        selected = "bubble1";
-        selectedWord = word1;
-
-        bubble1.style.filter = "brightness(0.7)";
-        bubble2.style.filter = "none";
-        bubble3.style.filter = "none";
-        bubble4.style.filter = "none";
-        bubble5.style.filter = "none";
-
-        thoughtInput.value = "";
-        sizeSlider.value = size1;
-        colorInput.value = color1;
-    }
-
-    /* 생각 2 선택 */
-    bubble2.onclick = function(){
-        selected = "bubble2";
-        selectedWord = word2;
-
-        bubble1.style.filter = "none";
-        bubble2.style.filter = "brightness(0.7)";
-        bubble3.style.filter = "none";
-        bubble4.style.filter = "none";
-        bubble5.style.filter = "none";
-
-        thoughtInput.value = "";
-        sizeSlider.value = size2;
-        colorInput.value = color2;
-    }
-
-    /* 생각 3 선택 */
-    bubble3.onclick = function(){
-        selected = "bubble3";
-        selectedWord = word3;
-
-        bubble1.style.filter = "none";
-        bubble2.style.filter = "none";
-        bubble3.style.filter = "brightness(0.7)";
-        bubble4.style.filter = "none";
-        bubble5.style.filter = "none";
-
-        thoughtInput.value = "";
-        sizeSlider.value = size3;
-        colorInput.value = color3;
-    }
-
-    /* 생각 4 선택 */
-    bubble4.onclick = function(){
-        selected = "bubble4";
-        selectedWord = word4;
-
-        bubble1.style.filter = "none";
-        bubble2.style.filter = "none";
-        bubble3.style.filter = "none";
-        bubble4.style.filter = "brightness(0.7)";
-        bubble5.style.filter = "none";
-
-        thoughtInput.value = "";
-        sizeSlider.value = size4;
-        colorInput.value = color4;
-    }
-
-    /* 생각 5 선택 */
-    bubble5.onclick = function(){
-        selected = "bubble5";
-        selectedWord = word5;
-
-        bubble1.style.filter = "none";
-        bubble2.style.filter = "none";
-        bubble3.style.filter = "none";
-        bubble4.style.filter = "none";
-        bubble5.style.filter = "brightness(0.7)";
-
-        thoughtInput.value = "";
-        sizeSlider.value = size5;
-        colorInput.value = color5;
-    }
-
-
-    /* 이름 입력 (제목) */
-    nameInput.oninput = function(){
-
-        if(nameInput.value == ""){
-            title.innerHTML = "(   )의 머릿속";
-
-        }else{
-            title.innerHTML = nameInput.value + "의 머릿속";
-        }
-    }
-
-
-    /* 생각 입력 */
-    thoughtInput.oninput = function(){
-
-        if(selected == "bubble1"){
-            word1.innerHTML = thoughtInput.value;
-
-        }else if(selected == "bubble2"){
-            word2.innerHTML = thoughtInput.value;
-
-        }else if(selected == "bubble3"){
-            word3.innerHTML = thoughtInput.value;
-
-        }else if(selected == "bubble4"){
-            word4.innerHTML = thoughtInput.value;
-
-        }else if(selected == "bubble5"){
-            word5.innerHTML = thoughtInput.value;
-        }
-    }
-
-
-    /* 생각 크기 */
-    /* 슬라이더 값을 10으로 나눠서 % 로 씀 (예: 283 -> 28.3%) */
-    sizeSlider.oninput = function(){
-
-        if(selected == "bubble1"){
-            /* 큰 원: 가로 세로 같게 */
-            if(sizeSlider.value > max1){
-                sizeSlider.value = max1;
-            }
-            bubble1.style.width = (sizeSlider.value / 10) + "%";
-            bubble1.style.height = (sizeSlider.value / 10) + "%";
-            size1 = sizeSlider.value;
-
-        }else if(selected == "bubble2"){
-            /* 작은 원: 가로 세로 같게 */
-            if(sizeSlider.value > max2){
-                sizeSlider.value = max2;
-            }
-            bubble2.style.width = (sizeSlider.value / 10) + "%";
-            bubble2.style.height = (sizeSlider.value / 10) + "%";
-            size2 = sizeSlider.value;
-
-        }else if(selected == "bubble3"){
-            /* 정원: 가로 세로 같게 */
-            if(sizeSlider.value > max3){
-                sizeSlider.value = max3;
-            }
-            bubble3.style.width = (sizeSlider.value / 10) + "%";
-            bubble3.style.height = (sizeSlider.value / 10) + "%";
-            size3 = sizeSlider.value;
-
-        }else if(selected == "bubble4"){
-            /* 세로 타원: 가로는 세로보다 좁게 */
-            if(sizeSlider.value > max4){
-                sizeSlider.value = max4;
-            }
-            bubble4.style.width = (sizeSlider.value * 0.75 / 10) + "%";
-            bubble4.style.height = (sizeSlider.value * 1.2 / 10) + "%";
-            size4 = sizeSlider.value;
-
-        }else if(selected == "bubble5"){
-            /* 가로 타원: 세로는 가로의 절반 */
-            if(sizeSlider.value > max5){
-                sizeSlider.value = max5;
-            }
-            bubble5.style.width = (sizeSlider.value * 1.3 / 10) + "%";
-            bubble5.style.height = (sizeSlider.value * 0.65 / 10) + "%";
-            size5 = sizeSlider.value;
-        }
-    }
-
-
-    /* 생각 색 */
-    colorInput.oninput = function(){
-
-        if(selected == "bubble1"){
-            fill1.style.background = colorInput.value;
-            color1 = colorInput.value;
-
-        }else if(selected == "bubble2"){
-            fill2.style.background = colorInput.value;
-            color2 = colorInput.value;
-
-        }else if(selected == "bubble3"){
-            fill3.style.background = colorInput.value;
-            color3 = colorInput.value;
-
-        }else if(selected == "bubble4"){
-            fill4.style.background = colorInput.value;
-            color4 = colorInput.value;
-
-        }else if(selected == "bubble5"){
-            fill5.style.background = colorInput.value;
-            color5 = colorInput.value;
-        }
-    }
-
-
-    /* 리셋 */
-    resetButton.onclick = function(){
-
-        /* 선택을 생각 1로 */
-        selected = "bubble1";
-
-        /* 글자를 처음대로 */
-        word1.innerHTML = "생각 1";
-        word2.innerHTML = "생각 2";
-        word3.innerHTML = "생각 3";
-        word4.innerHTML = "생각 4";
-        word5.innerHTML = "생각 5";
-
-        /* 크기를 처음대로 */
-        bubble1.style.width = "19%";
-        bubble1.style.height = "19%";
-        bubble2.style.width = "14%";
-        bubble2.style.height = "14%";
-        bubble3.style.width = "14%";
-        bubble3.style.height = "14%";
-        bubble4.style.width = "10.5%";
-        bubble4.style.height = "16.8%";
-        bubble5.style.width = "18.85%";
-        bubble5.style.height = "9.43%";
-
-        size1 = 190;
-        size2 = 140;
-        size3 = 140;
-        size4 = 140;
-        size5 = 145;
-
-        /* 색을 처음대로 */
-        fill1.style.background = "#ffffff";
-        fill2.style.background = "#ffffff";
-        fill3.style.background = "#ffffff";
-        fill4.style.background = "#ffffff";
-        fill5.style.background = "#ffffff";
-
-        color1 = "#ffffff";
-        color2 = "#ffffff";
-        color3 = "#ffffff";
-        color4 = "#ffffff";
-        color5 = "#ffffff";
-
-        /* 테두리: 생각 1만 굵게 */
-        bubble1.style.filter = "brightness(0.7)";
-        bubble2.style.filter = "none";
-        bubble3.style.filter = "none";
-        bubble4.style.filter = "none";
-        bubble5.style.filter = "none";
-
-        /* 제목과 입력칸들도 처음대로 */
-        title.innerHTML = "(   )의 머릿속";
-        nameInput.value = "";
-        thoughtInput.value = "";
-        sizeSlider.value = size1;
-        colorInput.value = color1;
-
-        /* 말투(폰트)도 처음대로 */
-        selectedWord = word1;
-        word1.style.fontFamily = "";
-        word2.style.fontFamily = "";
-        word3.style.fontFamily = "";
-        word4.style.fontFamily = "";
-        word5.style.fontFamily = "";
-
-        /* 배경도 기본으로 */
-        document.body.style.background = "black";
-        placeSound.pause();
-        placeBasic.style.opacity = "1";
-        placeSubway.style.opacity = "0.6";
-        placeClass.style.opacity = "0.6";
-        placeAlley.style.opacity = "0.6";
-    }
-
-    /* 말투(폰트) 바꾸기: 지금 고른 생각의 글자에 적용 */
-    fontBasic.onclick = function(){
-        selectedWord.style.fontFamily = "";
-    }
-    fontGaegu.onclick = function(){
-        selectedWord.style.fontFamily = "Gaegu";
-    }
-    fontPen.onclick = function(){
-        selectedWord.style.fontFamily = "Nanum Pen Script";
-    }
-    fontJua.onclick = function(){
-        selectedWord.style.fontFamily = "Jua";
-    }
-    fontDohyeon.onclick = function(){
-        selectedWord.style.fontFamily = "Do Hyeon";
-    }
-    fontDokdo.onclick = function(){
-        selectedWord.style.fontFamily = "East Sea Dokdo";
-    }
-    fontMyeongjo.onclick = function(){
-        selectedWord.style.fontFamily = "Nanum Myeongjo";
-    }
-
-    /* 배경: 기본 (검정, 소리 없음) */
-    placeBasic.onclick = function(){
-        document.body.style.background = "black";
-        placeSound.pause();
-
-        /* 고른 버튼만 진하게 */
-        placeBasic.style.opacity = "1";
-        placeSubway.style.opacity = "0.6";
-        placeClass.style.opacity = "0.6";
-        placeAlley.style.opacity = "0.6";
-    }
-
-    /* 배경: 지하철 */
-    placeSubway.onclick = function(){
-        document.body.style.background = "black url(subway.jpg) center / cover no-repeat fixed";
-        placeSound.src = "subway.mp3";
-        placeSound.play();
-
-        /* 고른 버튼만 진하게 */
-        placeBasic.style.opacity = "0.6";
-        placeSubway.style.opacity = "1";
-        placeClass.style.opacity = "0.6";
-        placeAlley.style.opacity = "0.6";
-    }
-
-    /* 배경: 교실 */
-    placeClass.onclick = function(){
-        document.body.style.background = "black url(classroom.jpg) center / cover no-repeat fixed";
-        placeSound.src = "classroom.mp3";
-        placeSound.play();
-
-        /* 고른 버튼만 진하게 */
-        placeBasic.style.opacity = "0.6";
-        placeSubway.style.opacity = "0.6";
-        placeClass.style.opacity = "1";
-        placeAlley.style.opacity = "0.6";
-    }
-
-    /* 배경: 골목길 */
-    placeAlley.onclick = function(){
-        document.body.style.background = "black url(alley.jpg) center / cover no-repeat fixed";
-        placeSound.src = "alley.mp3";
-        placeSound.play();
-
-        /* 고른 버튼만 진하게 */
-        placeBasic.style.opacity = "0.6";
-        placeSubway.style.opacity = "0.6";
-        placeClass.style.opacity = "0.6";
-        placeAlley.style.opacity = "1";
-    }
-
+let selected = "bubble1";
+let size1 = 190;
+let size2 = 140;
+let size3 = 140;
+let size4 = 140;
+let size5 = 145;
+let color1 = "#ffffff";
+let color2 = "#ffffff";
+let color3 = "#ffffff";
+let color4 = "#ffffff";
+let color5 = "#ffffff";
+
+bubble1.onclick = function(){
+selected = "bubble1";
+bubble1.style.border = "3px solid black";
+bubble2.style.border = "1px solid #999999";
+bubble3.style.border = "1px solid #999999";
+bubble4.style.border = "1px solid #999999";
+bubble5.style.border = "1px solid #999999";
+thoughtInput.value = "";
+sizeSlider.value = size1;
+colorInput.value = color1;
+};
+
+bubble2.onclick = function(){
+selected = "bubble2";
+bubble1.style.border = "1px solid #999999";
+bubble2.style.border = "3px solid black";
+bubble3.style.border = "1px solid #999999";
+bubble4.style.border = "1px solid #999999";
+bubble5.style.border = "1px solid #999999";
+thoughtInput.value = "";
+sizeSlider.value = size2;
+colorInput.value = color2;
+};
+
+bubble3.onclick = function(){
+selected = "bubble3";
+bubble1.style.border = "1px solid #999999";
+bubble2.style.border = "1px solid #999999";
+bubble3.style.border = "3px solid black";
+bubble4.style.border = "1px solid #999999";
+bubble5.style.border = "1px solid #999999";
+thoughtInput.value = "";
+sizeSlider.value = size3;
+colorInput.value = color3;
+};
+
+bubble4.onclick = function(){
+selected = "bubble4";
+bubble1.style.border = "1px solid #999999";
+bubble2.style.border = "1px solid #999999";
+bubble3.style.border = "1px solid #999999";
+bubble4.style.border = "3px solid black";
+bubble5.style.border = "1px solid #999999";
+thoughtInput.value = "";
+sizeSlider.value = size4;
+colorInput.value = color4;
+};
+
+bubble5.onclick = function(){
+selected = "bubble5";
+bubble1.style.border = "1px solid #999999";
+bubble2.style.border = "1px solid #999999";
+bubble3.style.border = "1px solid #999999";
+bubble4.style.border = "1px solid #999999";
+bubble5.style.border = "3px solid black";
+thoughtInput.value = "";
+sizeSlider.value = size5;
+colorInput.value = color5;
+};
+
+nameInput.oninput = function(){
+if(nameInput.value == ""){
+title.innerHTML = "(   )의 머릿속";
+}else{
+title.innerHTML = nameInput.value + "의 머릿속";
+}
+};
+
+thoughtInput.oninput = function(){
+if(selected == "bubble1"){
+word1.innerHTML = thoughtInput.value;
+}else if(selected == "bubble2"){
+word2.innerHTML = thoughtInput.value;
+}else if(selected == "bubble3"){
+word3.innerHTML = thoughtInput.value;
+}else if(selected == "bubble4"){
+word4.innerHTML = thoughtInput.value;
+}else if(selected == "bubble5"){
+word5.innerHTML = thoughtInput.value;
+}
+};
+
+sizeSlider.oninput = function(){
+if(selected == "bubble1"){
+bubble1.style.width = (sizeSlider.value / 10) + "%";
+bubble1.style.height = (sizeSlider.value / 10) + "%";
+size1 = sizeSlider.value;
+}else if(selected == "bubble2"){
+bubble2.style.width = (sizeSlider.value / 10) + "%";
+bubble2.style.height = (sizeSlider.value / 10) + "%";
+size2 = sizeSlider.value;
+}else if(selected == "bubble3"){
+bubble3.style.width = (sizeSlider.value / 10) + "%";
+bubble3.style.height = (sizeSlider.value / 10) + "%";
+size3 = sizeSlider.value;
+}else if(selected == "bubble4"){
+bubble4.style.width = (sizeSlider.value * 0.75 / 10) + "%";
+bubble4.style.height = (sizeSlider.value * 1.2 / 10) + "%";
+size4 = sizeSlider.value;
+}else if(selected == "bubble5"){
+bubble5.style.width = (sizeSlider.value * 1.3 / 10) + "%";
+bubble5.style.height = (sizeSlider.value * 0.65 / 10) + "%";
+size5 = sizeSlider.value;
+}
+};
+
+colorInput.oninput = function(){
+if(selected == "bubble1"){
+bubble1.style.background = colorInput.value;
+color1 = colorInput.value;
+}else if(selected == "bubble2"){
+bubble2.style.background = colorInput.value;
+color2 = colorInput.value;
+}else if(selected == "bubble3"){
+bubble3.style.background = colorInput.value;
+color3 = colorInput.value;
+}else if(selected == "bubble4"){
+bubble4.style.background = colorInput.value;
+color4 = colorInput.value;
+}else if(selected == "bubble5"){
+bubble5.style.background = colorInput.value;
+color5 = colorInput.value;
+}
+};
+
+placeBasic.onclick = function(){
+placeBackground.style.opacity = "0";
+subwaySound.pause();
+classSound.pause();
+alleySound.pause();
+placeBasic.style.opacity = "1";
+placeSubway.style.opacity = "0.6";
+placeClass.style.opacity = "0.6";
+placeAlley.style.opacity = "0.6";
+};
+
+placeSubway.onclick = function(){
+placeBackground.src = "subway.jpg";
+placeBackground.style.opacity = "1";
+subwaySound.play();
+classSound.pause();
+alleySound.pause();
+placeBasic.style.opacity = "0.6";
+placeSubway.style.opacity = "1";
+placeClass.style.opacity = "0.6";
+placeAlley.style.opacity = "0.6";
+};
+
+placeClass.onclick = function(){
+placeBackground.src = "classroom.jpg";
+placeBackground.style.opacity = "1";
+subwaySound.pause();
+classSound.play();
+alleySound.pause();
+placeBasic.style.opacity = "0.6";
+placeSubway.style.opacity = "0.6";
+placeClass.style.opacity = "1";
+placeAlley.style.opacity = "0.6";
+};
+
+placeAlley.onclick = function(){
+placeBackground.src = "alley.jpg";
+placeBackground.style.opacity = "1";
+subwaySound.pause();
+classSound.pause();
+alleySound.play();
+placeBasic.style.opacity = "0.6";
+placeSubway.style.opacity = "0.6";
+placeClass.style.opacity = "0.6";
+placeAlley.style.opacity = "1";
+};
+
+resetButton.onclick = function(){
+selected = "bubble1";
+word1.innerHTML = "생각 1";
+word2.innerHTML = "생각 2";
+word3.innerHTML = "생각 3";
+word4.innerHTML = "생각 4";
+word5.innerHTML = "생각 5";
+bubble1.style.width = "19%";
+bubble1.style.height = "19%";
+bubble2.style.width = "14%";
+bubble2.style.height = "14%";
+bubble3.style.width = "14%";
+bubble3.style.height = "14%";
+bubble4.style.width = "10.5%";
+bubble4.style.height = "16.8%";
+bubble5.style.width = "18.85%";
+bubble5.style.height = "9.43%";
+size1 = 190;
+size2 = 140;
+size3 = 140;
+size4 = 140;
+size5 = 145;
+bubble1.style.background = "white";
+bubble2.style.background = "white";
+bubble3.style.background = "white";
+bubble4.style.background = "white";
+bubble5.style.background = "white";
+color1 = "#ffffff";
+color2 = "#ffffff";
+color3 = "#ffffff";
+color4 = "#ffffff";
+color5 = "#ffffff";
+bubble1.style.border = "3px solid black";
+bubble2.style.border = "1px solid #999999";
+bubble3.style.border = "1px solid #999999";
+bubble4.style.border = "1px solid #999999";
+bubble5.style.border = "1px solid #999999";
+title.innerHTML = "(   )의 머릿속";
+nameInput.value = "";
+thoughtInput.value = "";
+sizeSlider.value = 190;
+colorInput.value = "#ffffff";
+placeBackground.style.opacity = "0";
+subwaySound.pause();
+classSound.pause();
+alleySound.pause();
+placeBasic.style.opacity = "1";
+placeSubway.style.opacity = "0.6";
+placeClass.style.opacity = "0.6";
+placeAlley.style.opacity = "0.6";
+};
 </script>
-
 </body>
 </html>
